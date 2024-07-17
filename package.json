@@ -1,0 +1,37 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "This app help you to manage your money.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/index.js",
+    "dev": "nodemon backend/index.js"
+  },
+  "keywords": [
+    "expense",
+    "money",
+    "manage",
+    "tracks"
+  ],
+  "author": "Shivam Sharma",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shivam-sharma7/expensify.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "@graphql-tools/merge": "^9.0.4",
+    "bcryptjs": "^2.4.3",
+    "connect-mongodb-session": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "graphql": "^16.8.1",
+    "graphql-passport": "^0.6.8",
+    "mongoose": "^8.4.4",
+    "passport": "^0.7.0"
+  }
+}
