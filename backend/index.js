@@ -5,15 +5,51 @@ import express from 'express';
 import http from 'http';
 import cors from 'cors'
 import dotenv from 'dotenv';
-dotenv.config();
+
+import passport from 'passport';
+import session from 'express-session';
+import connectMongo from  'connect-mongodb-session'
+import { buildContext } from 'graphql-passport';
+
 import connectDB from './database/db.js';
+import { passportConfig } from './passport/passport.config.js';
+
+import mergeResolvers from './resolvers/index.js';
+import mergeTypeDefs from './typeDefs/index.js';
+
+dotenv.config();
+passportConfig();
 
 const app = express();
 
 const httpServer = http.createServer(app);
 
-import mergeResolvers from './resolvers/index.js';
-import mergeTypeDefs from './typeDefs/index.js';
+const MongoDBStore = connectMongo(session);
+
+const store = new MongoDBStore({
+    uri: process.env.MONGO_URI,
+    collection: 'sessions',
+});
+
+store.on('error', (error) => {
+    console.log(error);
+})
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  /* this will specifies whether the session to the store on every req
+     if we set true the we would have multiple session for the same user */
+  resave: false,  
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+    httpOnly: true,
+  },
+  store: store
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const server = new ApolloServer({
     typeDefs: mergeTypeDefs,
@@ -25,12 +61,17 @@ await server.start();
 
 app.use(
     '/',
-    cors(),
+    cors(
+      {
+        origin: "http://localhost:3000",
+        credentials: true
+      }
+    ),
     express.json(),
     // expressMiddleware accepts the same arguments:
     // an Apollo Server instance and optional configuration options
     expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token }),
+      context: async ({ req, res }) => buildContext({req, res }),
     }),
   );
   
