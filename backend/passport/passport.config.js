@@ -1,5 +1,5 @@
 import passport from "passport";
-import bycrpt from "bcrypt";
+import bycrpt from "bcryptjs";
 
 import { User } from "../models/user.model.js";
 
