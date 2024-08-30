@@ -1,20 +1,20 @@
-import passport from "passport";
-import bycrpt from "bcryptjs";
+import passport from 'passport';
+import bycrpt from 'bcryptjs';
 
-import { User } from "../models/user.model.js";
+import { User } from '../models/user.model.js';
 
-import { GraphQLLocalStrategy } from "graphql-passport";
+import { GraphQLLocalStrategy } from 'graphql-passport';
 
 export const passportConfig = async () => {
   passport.serializeUser((user, done) => {
-    console.log("serializing user");
+    console.log('serializing user');
     done(null, user.id);
   });
 
   passport.deserializeUser(async (id, done) => {
     try {
       const user = await User.findById(id);
-      console.log("deserializing user");
+      console.log('deserializing user');
       done(null, user);
     } catch (err) {
       done(err);
@@ -26,16 +26,16 @@ export const passportConfig = async () => {
       try {
         const user = await User.findOne({ username });
         if (!user) {
-          return done(new Error("no such user"));
+          return done(new Error('no such user'));
         }
         const valid = await bycrpt.compare(password, user.password);
         if (!valid) {
-          return done(new Error("invalid password"));
+          return done(new Error('invalid password'));
         }
         return done(null, user);
       } catch (err) {
         return done(err);
       }
-    })
+    }),
   );
 };

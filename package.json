@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node backend/index.js",
-    "dev": "nodemon backend/index.js"
+    "dev": "nodemon backend/index.js",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
   "keywords": [
     "expense",
@@ -33,5 +35,8 @@
     "graphql-passport": "^0.6.8",
     "mongoose": "^8.4.4",
     "passport": "^0.7.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }
