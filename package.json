@@ -9,7 +9,8 @@
     "dev": "nodemon backend/index.js",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "ci": "npm run check-format"
+    "ci": "npm run check-format",
+    "prepare": "husky"
   },
   "keywords": [
     "expense",
@@ -38,6 +39,7 @@
     "passport": "^0.7.0"
   },
   "devDependencies": {
+    "husky": "^9.1.6",
     "prettier": "^3.3.3"
   }
 }
