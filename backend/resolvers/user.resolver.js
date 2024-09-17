@@ -54,7 +54,7 @@ const userResolver = {
       }
     },
 
-    logout: async (__, context) => {
+    logout: async (_, __, context) => {
       try {
         await context.logout();
         req.session.destroy((err) => {
@@ -69,13 +69,28 @@ const userResolver = {
       }
     },
   },
-
   Query: {
-    users: () => {
-      return users;
+    authUser: async (_, __, context) => {
+      try {
+        const user = await context.getUser();
+        return user;
+      } catch (err) {
+        console.error('Error in authUser:', err);
+        throw new Error(err.message || 'Internal server error');
+      }
     },
-    user: (_, { userId }) => {
-      return users.find((user) => user._id === userId);
+
+    user: async (_, { userId }) => {
+      try {
+        const user = await User.findById(userId);
+        if (!user) {
+          throw new Error('User not found');
+        }
+        return user;
+      } catch (err) {
+        console.error('Error while fetching user:', err);
+        throw new Error(err.message || 'Internal server error');
+      }
     },
   },
 };
