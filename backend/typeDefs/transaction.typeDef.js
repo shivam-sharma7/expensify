@@ -14,7 +14,7 @@ type Transaction {
 type Query {
   transactions: [Transaction!]
   transaction(transactionId:ID!): Transaction
-  categoryStatistics: [CategoryStatistics!]
+  # TODO: Implement the categoryStatistics resolver
 }
 
 type Mutation {
