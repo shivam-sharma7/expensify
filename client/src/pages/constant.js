@@ -1,6 +1,6 @@
 import Home from './Home';
 import LoginPage from './Login';
-import SignUpPage from './SignUp';
+import SignUpPage from './Signup';
 import TransactionPage from './Transaction';
 import NotFound from './NotFound';
 
