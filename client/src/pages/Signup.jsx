@@ -97,8 +97,8 @@ const Signup = () => {
             </form>
             <div className="mt-4 text-sm text-gray-600 text-center">
               <p>
-                Already have an account?{' '}
-                <Link to="/login" className="text-black hover:underline">
+                Already have an account?
+                <Link to="/login" className="text-black hover:underline pl-2">
                   Login here
                 </Link>
               </p>
