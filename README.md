@@ -1,6 +1,10 @@
 # Expensify
 
-Expensify help you to manage your money by keeping all your expenses in one place, categorizing them, and providing a comprehensive view of where your money is going.
+Expensify help you to manage your money by keeping all your expenses in one place, categorizing them, and providing a comprehensive view of your money.
+
+<div align="center">
+<img src="./client/src/assets/product.png" alt="expensify">
+</div>
 
 ## Prerequisites
 
@@ -23,6 +27,23 @@ npm run dev
 ```
 
 Open [localhost:4000](http://localhost:4000)
+
+### Set up client
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Change dir to start backend service
+
+```bash
+cd client
+npm run dev
+```
+
+Open [localhost:4000](http://localhost:3000)
 
 ## License
 
