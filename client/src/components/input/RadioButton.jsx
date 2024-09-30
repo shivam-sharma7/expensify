@@ -1,3 +1,4 @@
+import React from 'react';
 const RadioButton = ({ id, label, onChange, value, checked }) => {
   return (
     <div className="inline-flex items-center">

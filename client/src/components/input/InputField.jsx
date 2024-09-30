@@ -1,3 +1,4 @@
+import React from 'react';
 const InputField = ({ label, id, name, type = 'text', onChange, value }) => {
   return (
     <div>

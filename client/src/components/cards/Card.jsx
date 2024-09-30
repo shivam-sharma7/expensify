@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { BsCardText } from 'react-icons/bs';
 import { MdOutlinePayments } from 'react-icons/md';
