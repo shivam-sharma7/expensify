@@ -3,13 +3,30 @@ import { it, expect, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import HomePage from '../../src/pages/Home';
+import { LOGOUT } from '../../src/graphql/mutations/user.mutation';
+import { MockedProvider } from '@apollo/client/testing';
+
+const mocks = [
+  {
+    request: {
+      query: LOGOUT,
+    },
+    result: {
+      data: {
+        logout: true,
+      },
+    },
+  },
+];
 
 describe('Home', () => {
   it('should render the home page', () => {
     render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <MemoryRouter>
+          <HomePage />
+        </MemoryRouter>
+      </MockedProvider>,
     );
     expect(screen.getByText('Spend wisely, track wisely'));
   });
