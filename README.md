@@ -30,20 +30,15 @@ Open [localhost:4000](http://localhost:4000)
 
 ### Set up client
 
-Install dependencies
-
-```bash
-npm install
-```
-
 Change dir to start backend service
 
 ```bash
 cd client
+npm install
 npm run dev
 ```
 
-Open [localhost:4000](http://localhost:3000)
+Open [localhost:3000](http://localhost:3000)
 
 ## License
 

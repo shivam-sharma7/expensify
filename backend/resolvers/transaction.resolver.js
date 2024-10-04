@@ -2,7 +2,7 @@ import { Transaction } from '../models/transaction.model.js';
 
 const transactionResolver = {
   Query: {
-    transactions: async ({ _, __, context }) => {
+    transactions: async (_, __, context) => {
       try {
         if (!context.getUser()) {
           throw new Error('Unauthorized user');
