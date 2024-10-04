@@ -9,7 +9,7 @@ const transactionResolver = {
         }
 
         const userId = await context.getUser()._id;
-        const transaction = await Transaction.find({ user: userId });
+        const transaction = await Transaction.find({ userId });
         return transaction;
       } catch (err) {
         console.log('Error in getting transactions:', err);
@@ -31,9 +31,19 @@ const transactionResolver = {
   Mutation: {
     createTransaction: async (_, { input }, context) => {
       try {
+        const validPaymentTypes = ['cash', 'credit card'];
+        const categoryTypes = ['saving', 'expense', 'investment'];
+        if (
+          !validPaymentTypes.includes(input.paymentType) ||
+          !categoryTypes.includes(input.category)
+        ) {
+          throw new Error(
+            `Invalid payment type: ${input.paymentType} and category: ${input.category}`,
+          );
+        }
         const newTransaction = new Transaction({
           ...input,
-          user: context.getUser()._id,
+          userId: context.getUser()._id,
         });
         await newTransaction.save();
         return newTransaction;
