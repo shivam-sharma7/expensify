@@ -33,13 +33,8 @@ const transactionResolver = {
       try {
         const validPaymentTypes = ['cash', 'credit card'];
         const categoryTypes = ['saving', 'expense', 'investment'];
-        if (
-          !validPaymentTypes.includes(input.paymentType) ||
-          !categoryTypes.includes(input.category)
-        ) {
-          throw new Error(
-            `Invalid payment type: ${input.paymentType} and category: ${input.category}`,
-          );
+        if (!validPaymentTypes.includes(input.paymentType) || !categoryTypes.includes(input.category)) {
+          throw new Error(`Invalid payment type: ${input.paymentType} and category: ${input.category}`);
         }
         const newTransaction = new Transaction({
           ...input,
@@ -54,11 +49,7 @@ const transactionResolver = {
     },
     updateTransaction: async (_, { input }) => {
       try {
-        const updateTransaction = await Transaction.findByIdAndUpdate(
-          input.transactionId,
-          input,
-          { new: true },
-        );
+        const updateTransaction = await Transaction.findByIdAndUpdate(input.transactionId, input, { new: true });
         return updateTransaction;
       } catch (err) {
         console.log('Error in updating transaction:', err);
@@ -67,8 +58,7 @@ const transactionResolver = {
     },
     deleteTransaction: async (_, { transactionId }) => {
       try {
-        const deleteTransaction =
-          await Transaction.findByIdAndDelete(transactionId);
+        const deleteTransaction = await Transaction.findByIdAndDelete(transactionId);
         return deleteTransaction;
       } catch (err) {
         console.log('Error in deleting transaction:', err);

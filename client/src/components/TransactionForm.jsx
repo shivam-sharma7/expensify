@@ -35,17 +35,11 @@ const TransactionForm = () => {
   };
 
   return (
-    <form
-      className="w-full max-w-lg flex flex-col gap-5 px-3"
-      onSubmit={handleSubmit}
-    >
+    <form className="w-full max-w-lg flex flex-col gap-5 px-3" onSubmit={handleSubmit}>
       {/* TRANSACTION */}
       <div className="flex flex-wrap">
         <div className="w-full">
-          <label
-            className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-            htmlFor="description"
-          >
+          <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="description">
             Transaction
           </label>
           <input
@@ -61,10 +55,7 @@ const TransactionForm = () => {
       {/* PAYMENT TYPE */}
       <div className="flex flex-wrap gap-3">
         <div className="w-full flex-1 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-            htmlFor="paymentType"
-          >
+          <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="paymentType">
             Payment Type
           </label>
           <div className="relative">
@@ -77,11 +68,7 @@ const TransactionForm = () => {
               <option value={'cash'}>Cash</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
               </svg>
             </div>
@@ -90,10 +77,7 @@ const TransactionForm = () => {
 
         {/* CATEGORY */}
         <div className="w-full flex-1 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-            htmlFor="category"
-          >
+          <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="category">
             Category
           </label>
           <div className="relative">
@@ -107,11 +91,7 @@ const TransactionForm = () => {
               <option value={'investment'}>Investment</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
               </svg>
             </div>
@@ -120,10 +100,7 @@ const TransactionForm = () => {
 
         {/* AMOUNT */}
         <div className="w-full flex-1 mb-6 md:mb-0">
-          <label
-            className="block uppercase text-white text-xs font-bold mb-2"
-            htmlFor="amount"
-          >
+          <label className="block uppercase text-white text-xs font-bold mb-2" htmlFor="amount">
             Amount($)
           </label>
           <input
@@ -139,10 +116,7 @@ const TransactionForm = () => {
       {/* LOCATION */}
       <div className="flex flex-wrap gap-3">
         <div className="w-full flex-1 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-            htmlFor="location"
-          >
+          <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="location">
             Location
           </label>
           <input
@@ -156,10 +130,7 @@ const TransactionForm = () => {
 
         {/* DATE */}
         <div className="w-full flex-1">
-          <label
-            className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-            htmlFor="date"
-          >
+          <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="date">
             Date
           </label>
           <input

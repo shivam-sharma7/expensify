@@ -53,20 +53,12 @@ const Signup = () => {
       <div className="flex rounded-lg overflow-hidden z-50 bg-gray-300">
         <div className="w-full bg-gray-100 min-w-80 sm:min-w-96 flex items-center justify-center">
           <div className="max-w-md w-full p-6">
-            <h1 className="text-3xl font-semibold mb-6 text-black text-center">
-              Sign Up
-            </h1>
+            <h1 className="text-3xl font-semibold mb-6 text-black text-center">Sign Up</h1>
             <h1 className="text-sm font-semibold mb-6 text-gray-500 text-center">
               Join to keep track of your expenses
             </h1>
             <form className="space-y-4" onSubmit={handleSubmit}>
-              <InputField
-                label="Full Name"
-                id="name"
-                name="name"
-                value={signUpData.name}
-                onChange={handleChange}
-              />
+              <InputField label="Full Name" id="name" name="name" value={signUpData.name} onChange={handleChange} />
               <InputField
                 label="Username"
                 id="username"

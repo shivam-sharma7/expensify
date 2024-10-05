@@ -12,8 +12,7 @@ import { toast } from 'react-hot-toast';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const ProfileImg =
-  'https://avatars.githubusercontent.com/u/91419219?v=4';
+export const ProfileImg = 'https://avatars.githubusercontent.com/u/91419219?v=4';
 
 const HomePage = () => {
   const chartData = {
@@ -22,16 +21,8 @@ const HomePage = () => {
       {
         label: '%',
         data: [13, 8, 3],
-        backgroundColor: [
-          'rgba(75, 192, 192)',
-          'rgba(255, 99, 132)',
-          'rgba(54, 162, 235)',
-        ],
-        borderColor: [
-          'rgba(75, 192, 192)',
-          'rgba(255, 99, 132)',
-          'rgba(54, 162, 235, 1)',
-        ],
+        backgroundColor: ['rgba(75, 192, 192)', 'rgba(255, 99, 132)', 'rgba(54, 162, 235)'],
+        borderColor: ['rgba(75, 192, 192)', 'rgba(255, 99, 132)', 'rgba(54, 162, 235, 1)'],
         borderWidth: 1,
         borderRadius: 30,
         spacing: 10,
@@ -59,21 +50,10 @@ const HomePage = () => {
           <p className="md:text-4xl text-2xl lg:text-4xl font-bold text-center relative z-50 mb-4 mr-4 bg-gradient-to-r from-pink-600 via-indigo-500 to-pink-400 inline-block text-transparent bg-clip-text">
             Spend wisely, track wisely
           </p>
-          <img
-            src={ProfileImg}
-            className="w-11 h-11 rounded-full border cursor-pointer"
-            alt="Shivam Sharma"
-          />
-          {!loading && (
-            <MdLogout
-              className="mx-2 w-5 h-5 cursor-pointer"
-              onClick={handleLogout}
-            />
-          )}
+          <img src={ProfileImg} className="w-11 h-11 rounded-full border cursor-pointer" alt="Shivam Sharma" />
+          {!loading && <MdLogout className="mx-2 w-5 h-5 cursor-pointer" onClick={handleLogout} />}
           {/* loading spinner */}
-          {loading && (
-            <div className="w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin"></div>
-          )}
+          {loading && <div className="w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin"></div>}
         </div>
         <div className="flex flex-wrap w-full justify-center items-center gap-6">
           <div className="h-[330px] w-[330px] md:h-[360px] md:w-[360px]  ">

@@ -17,8 +17,7 @@ const categoryColorMap = {
 };
 
 const Card = ({ transaction }) => {
-  let { category, amount, location, date, paymentType, description } =
-    transaction;
+  let { category, amount, location, date, paymentType, description } = transaction;
   const cardClass = categoryColorMap[category];
 
   description = description[0]?.toUpperCase() + description.slice(1);
@@ -57,11 +56,7 @@ const Card = ({ transaction }) => {
         </p>
         <div className="flex justify-between items-center">
           <p className="text-xs text-black font-bold">{formattedDate}</p>
-          <img
-            src={ProfileImg}
-            className="h-8 w-8 border rounded-full"
-            alt=""
-          />
+          <img src={ProfileImg} className="h-8 w-8 border rounded-full" alt="" />
         </div>
       </div>
     </div>
