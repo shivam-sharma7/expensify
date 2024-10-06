@@ -18,7 +18,7 @@ function App() {
     <>
       {data?.authUser && <Header />}
       <Routes>
-        <Route path="/" element={data.authUser ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/" element={data.authUser ? <Home authUser={data.authUser} /> : <Navigate to="/login" />} />
         <Route path="/login" element={!data.authUser ? <LoginPage /> : <Navigate to="/" />} />
         <Route path="/signup" element={!data.authUser ? <SignUpPage /> : <Navigate to="/" />} />
         <Route path="/transaction/:id" element={data.authUser ? <TransactionPage /> : <Navigate to="/login" />} />
