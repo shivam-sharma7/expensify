@@ -53,7 +53,7 @@ const Card = ({ transaction }) => {
           <div className="flex items-center gap-2">
             {!loading && <FaTrash className={'cursor-pointer'} onClick={handleDelete} />}
             {loading && <div className="font-semibold">Deleting</div>}
-            <Link to={`/transaction/123`}>
+            <Link to={`/transaction/${transaction._id}`}>
               <HiPencilAlt className="cursor-pointer" size={20} />
             </Link>
           </div>
