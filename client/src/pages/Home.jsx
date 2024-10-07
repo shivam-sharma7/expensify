@@ -1,38 +1,75 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 import Cards from '../components/cards/Cards';
 import TransactionForm from '../components/TransactionForm';
+import { GET_TRANSACTION_CATEGORY_STATISTICS } from '../graphql/queries/transaction.query';
+import { GET_AUTHENTICATED_USER } from '../graphql/queries/user.query';
 import { LOGOUT } from '../graphql/mutations/user.mutation';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { MdLogout } from 'react-icons/md';
 import { toast } from 'react-hot-toast';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const ProfileImg = 'https://avatars.githubusercontent.com/u/91419219?v=4';
+const HomePage = () => {
+  const { data } = useQuery(GET_TRANSACTION_CATEGORY_STATISTICS);
+  const { data: authUserData } = useQuery(GET_AUTHENTICATED_USER);
+  const [logout, { loading, client }] = useMutation(LOGOUT, {
+    refetchQueries: ['GetAuthenticatedUser'],
+  });
 
-const HomePage = ({ authUser }) => {
-  const chartData = {
-    labels: ['Saving', 'Expense', 'Investment'],
+  const [chartData, setChartData] = useState({
+    labels: [],
     datasets: [
       {
         label: '%',
-        data: [13, 8, 3],
-        backgroundColor: ['#4CAF50', '#FF5722', '#2196F3'],
-        borderColor: ['#388E3C', '#E64A19', '#1976D2'],
+        data: [],
+        backgroundColor: [],
+        borderColor: [],
         borderWidth: 1,
         borderRadius: 30,
         spacing: 10,
         cutout: 130,
       },
     ],
-  };
-
-  const [logout, { loading, client }] = useMutation(LOGOUT, {
-    refetchQueries: ['GetAuthenticatedUser'],
   });
+
+  useEffect(() => {
+    if (data?.categoryStatistics) {
+      const categories = data.categoryStatistics.map((stat) => stat.category);
+      const totalAmounts = data.categoryStatistics.map((stat) => stat.totalAmount);
+
+      const backgroundColors = [];
+      const borderColors = [];
+
+      categories.forEach((category) => {
+        if (category === 'saving') {
+          backgroundColors.push('rgba(76, 175, 80)');
+          borderColors.push('rgba(76, 175, 80)');
+        } else if (category === 'expense') {
+          backgroundColors.push('rgba(255, 87, 34)');
+          borderColors.push('rgba(255, 87, 34)');
+        } else if (category === 'investment') {
+          backgroundColors.push('rgba(33, 150, 243)');
+          borderColors.push('rgba(33, 150, 243)');
+        }
+      });
+
+      setChartData((prev) => ({
+        labels: categories,
+        datasets: [
+          {
+            ...prev.datasets[0],
+            data: totalAmounts,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+          },
+        ],
+      }));
+    }
+  }, [data]);
 
   const handleLogout = async () => {
     try {
@@ -52,7 +89,11 @@ const HomePage = ({ authUser }) => {
           <p className="md:text-4xl text-2xl lg:text-4xl font-bold text-center relative z-50 mb-4 mr-4 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 inline-block text-transparent bg-clip-text">
             Spend wisely, track wisely
           </p>
-          <img src={ProfileImg} className="w-11 h-11 rounded-full border cursor-pointer" alt={authUser.name} />
+          <img
+            src={authUserData?.authUser.profilePicture}
+            className="w-11 h-11 rounded-full border cursor-pointer"
+            alt={authUserData?.authUser.name}
+          />
           {/* <p>{authUser.name}</p> */}
           {!loading && (
             <div className="flex items-center cursor-pointer" onClick={handleLogout}>
@@ -62,9 +103,11 @@ const HomePage = ({ authUser }) => {
           )}
         </div>
         <div className="flex flex-wrap w-full justify-center items-center gap-6">
-          <div className="h-[330px] w-[330px] md:h-[360px] md:w-[360px]  ">
-            <Doughnut data={chartData} />
-          </div>
+          {data?.categoryStatistics && (
+            <div className="h-[330px] w-[330px] md:h-[360px] md:w-[360px]">
+              <Doughnut data={chartData} />
+            </div>
+          )}
 
           <TransactionForm />
         </div>

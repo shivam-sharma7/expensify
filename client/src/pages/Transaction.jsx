@@ -14,7 +14,7 @@ const TransactionPage = () => {
   });
 
   const [updateTransaction] = useMutation(UPDATE_TRANSACTION, {
-    refetchQueries: ['GetTransactions'],
+    refetchQueries: ['GetTransactions', 'GetCategoryStatistics'],
     onCompleted: () => {
       navigate('/');
     },

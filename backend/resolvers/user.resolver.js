@@ -27,10 +27,12 @@ const userResolver = {
           name,
           password: hashedPassword,
           gender,
-          profilePic: gender === 'male' ? boyProfilePic : girlProfilePic,
+          profilePicture: gender === 'male' ? boyProfilePic : girlProfilePic,
         });
 
-        await newUser.save(), await context.login(newUser);
+        await newUser.save();
+        await context.login(newUser);
+        return newUser;
       } catch (err) {
         console.error('Error while creating user', err);
         throw new Error(err.message || 'Internal server error');

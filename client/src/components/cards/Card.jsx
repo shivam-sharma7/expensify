@@ -6,11 +6,11 @@ import { FaSackDollar } from 'react-icons/fa6';
 import { FaTrash } from 'react-icons/fa';
 import { HiPencilAlt } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { ProfileImg } from '../../pages/Home';
 import { formatDate } from '../../utils/formatDate';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { toast } from 'react-hot-toast';
 import { DELETE_TRANSACTION } from '../../graphql/mutations/transaction.mutation';
+import { GET_AUTHENTICATED_USER } from '../../graphql/queries/user.query';
 
 const categoryColorMap = {
   saving: 'from-green-700 to-green-400',
@@ -20,10 +20,11 @@ const categoryColorMap = {
 };
 
 const Card = ({ transaction }) => {
+  const { data } = useQuery(GET_AUTHENTICATED_USER);
   let { category, amount, location, date, paymentType, description } = transaction;
   const cardClass = categoryColorMap[category];
   const [deleteTransaction, { loading }] = useMutation(DELETE_TRANSACTION, {
-    refetchQueries: ['GetTransactions'],
+    refetchQueries: ['GetTransactions', 'GetCategoryStatistics'],
   });
 
   description = description[0]?.toUpperCase() + description.slice(1);
@@ -76,7 +77,7 @@ const Card = ({ transaction }) => {
         </p>
         <div className="flex justify-between items-center">
           <p className="text-xs text-black font-bold">{formattedDate}</p>
-          <img src={ProfileImg} className="h-8 w-8 border rounded-full" alt="" />
+          <img src={data?.authUser.profilePicture} className="h-8 w-8 border rounded-full" alt={data?.authUser.name} />
         </div>
       </div>
     </div>
