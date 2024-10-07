@@ -3,7 +3,7 @@
 Expensify help you to manage your money by keeping all your expenses in one place, categorizing them, and providing a comprehensive view of your money.
 
 <div align="center">
-<img src="./client/src/assets/product.png" alt="expensify">
+<img src="./client/src/assets/expensify.png" alt="expensify">
 </div>
 
 ## Prerequisites
