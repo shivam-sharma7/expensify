@@ -10,7 +10,7 @@
     "build": "npm install && npm install --prefix client && npm run build --prefix client",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "ci": "npm run check-format",
+    "ci": "npm run check-format && cd client && npm run test",
     "prepare": "husky"
   },
   "keywords": [
