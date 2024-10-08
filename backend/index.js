@@ -3,6 +3,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express from 'express';
 import http from 'http';
+import path from 'path';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -20,6 +21,7 @@ import mergeTypeDefs from './typeDefs/index.js';
 dotenv.config();
 passportConfig();
 
+const __dirname = path.resolve();
 const app = express();
 
 const httpServer = http.createServer(app);
@@ -74,6 +76,12 @@ app.use(
     context: async ({ req, res }) => buildContext({ req, res }),
   }),
 );
+
+app.use(express.static(path.join(__dirname, 'client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
+});
 
 await connectDB();
 
