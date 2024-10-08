@@ -83,7 +83,6 @@ const transactionResolver = {
       }
     },
   },
-  // TODO: Add the transaction/user relationship
 };
 
 export default transactionResolver;
