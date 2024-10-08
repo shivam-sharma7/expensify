@@ -30,7 +30,7 @@ Open [localhost:4000](http://localhost:4000)
 
 ### Set up client
 
-Change dir to start backend service
+Change dir to start client service
 
 ```bash
 cd client
