@@ -63,6 +63,7 @@ const server = new ApolloServer({
   typeDefs: mergeTypeDefs,
   resolvers: mergeResolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  hideSchemaDetailsFromClientErrors: true,
 });
 
 await server.start();
