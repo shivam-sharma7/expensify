@@ -48,7 +48,7 @@ const transactionResolver = {
   Mutation: {
     createTransaction: async (_, { input }, context) => {
       try {
-        const validPaymentTypes = ['cash', 'credit card'];
+        const validPaymentTypes = ['cash', 'credit card', 'upi'];
         const categoryTypes = ['saving', 'expense', 'investment'];
         if (!validPaymentTypes.includes(input.paymentType) || !categoryTypes.includes(input.category)) {
           throw new Error(`Invalid payment type: ${input.paymentType} and category: ${input.category}`);
