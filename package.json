@@ -7,10 +7,10 @@
   "scripts": {
     "start": "NODE_ENV=production node backend/index.js",
     "dev": "NODE_ENV=development nodemon backend/index.js",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client",
+    "build": "npm install && npm install --prefix client && npm run test --prefix client && npm run build --prefix client",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "ci": "npm run check-format && cd client && npm run test",
+    "ci": "npm run check-format",
     "prepare": "husky"
   },
   "keywords": [
